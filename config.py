@@ -7,6 +7,9 @@ import os.path
 from os.path import exists
 import touch
 
+from objects import (cfgnamedialog, cfgnameentry, configcombobox, configlist,
+    iwadcombobox, iwadlist, portcombobox, portlist)
+
 cfg = "./.mpdl.cfg"
 
 def configinit():
@@ -26,9 +29,6 @@ def configinit():
             jsoncfg = json.load(f)
             f.close()
 
-            portlist = builder.get_object("portlist")
-            iwadlist = builder.get_object("iwadlist")
-
             for port in jsoncfg['ports']:
                 portlist.append([port['name'], port['path']])
 
@@ -40,20 +40,6 @@ def writechanges():
     jsonstr = json.dumps(jsoncfg, indent = 4)
     f.write(jsonstr)
     f.close()
-
-# Saved configurations
-
-cfgnamedialog = builder.get_object("cfgnamedialog")
-cfgnameentry = builder.get_object("cfgnameentry")
-configcombobox = builder.get_object("configcombobox")
-configlist = builder.get_object("configlist")
-
-portcombobox = builder.get_object("portcombobox")
-portlist = builder.get_object("portlist")
-iwadcombobox = builder.get_object("iwadcombobox")
-iwadlist = builder.get_object("iwadlist")
-
-
 
 def saveconfigbuttonclicked(button):
     cfgnamedialog.show()

@@ -1,31 +1,24 @@
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-import builder
+from builder import connect_signals
+from config import configinit
 import config
 
-window = builder.get_object("window")
-window.show_all()
-window.connect("delete-event", Gtk.main_quit)
+from objects import (complevelcombobox, configcombobox, iwadcombobox, 
+    portcombobox, skillcombobox, window)
 
-builder.connect_signals()
-
-config.configinit()
+connect_signals()
+configinit()
 
 # This needs to be done manually since GLADE is bugged
-portcombobox = builder.get_object("portcombobox")
-portcombobox.set_active(0)
-
-iwadcombobox = builder.get_object("iwadcombobox")
+complevelcombobox.set_active(0)
+configcombobox.set_active(0)
 iwadcombobox.set_active(0)
-
-skillcombobox = builder.get_object("skillcombobox")
+portcombobox.set_active(0)
 skillcombobox.set_active(0)
 
-complevelcombobox = builder.get_object("complevelcombobox")
-complevelcombobox.set_active(0)
-
-configcombobox = builder.get_object("configcombobox")
-configcombobox.set_active(0)
+window.show_all()
+window.connect("delete-event", Gtk.main_quit)
 
 Gtk.main()

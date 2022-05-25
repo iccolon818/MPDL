@@ -3,10 +3,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 import builder
 
-dehchooser = builder.get_object("dehchooser")
-dehpathentry = builder.get_object("dehpathentry")
-dehlist = builder.get_object("dehlist")
-dehlisttreeview = builder.get_object("dehlisttreeview")
+from objects import (dehchooser, dehpathentry, dehlist, dehlisttreeview)
 
 def cleardehpatchesbuttonclicked(button):
     dehlist.clear()

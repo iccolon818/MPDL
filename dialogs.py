@@ -4,19 +4,9 @@ from gi.repository import Gtk
 import builder
 import config
 
-iwadcombobox = builder.get_object("iwadcombobox")
-iwadchooser = builder.get_object("iwadchooser")
-iwadpathentry = builder.get_object("iwadpathentry")
-iwadnamedialog = builder.get_object("iwadnamedialog")
-iwadnameentry = builder.get_object('iwadnameentry')
-iwadlist = builder.get_object("iwadlist")
-
-portcombobox = builder.get_object("portcombobox")
-portchooser = builder.get_object("portchooser")
-portpathentry = builder.get_object("portpathentry")
-portnamedialog = builder.get_object("portnamedialog")
-portnameentry = builder.get_object("portnameentry")
-portlist = builder.get_object("portlist")
+from objects import (iwadchooser, iwadcombobox, iwadnamedialog, iwadnameentry,
+    iwadlist, iwadpathentry, portchooser, portcombobox, portnamedialog,
+    portnameentry, portlist, portpathentry)
 
 # Add Source Port
 
