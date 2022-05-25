@@ -125,8 +125,37 @@ def cfgnamecancelbuttonclicked(button):
     cfgnamedialog.hide()
 
 def cfgnameokbuttonclicked(button):
-    cfgnamedialog.hide()
+    isnewconfig = True
 
+    for cfg in jsoncfg['cfgs']:
+        if cfg['name'] == cfgnameentry.get_text():
+            isnewconfig = False
+            break
+    
+    if not isnewconfig:
+        overwritedialog.show()
+    else:
+        cfgnamedialog.hide()
+        saveconfig(True, -1)
+
+def overwritenobuttonclicked(button):
+    overwritedialog.hide()
+
+def overwriteyesbuttonclicked(button):
+    overwritedialog.hide()
+    cfgnamedialog.hide()
+    index = 0
+
+    for cfg in jsoncfg['cfgs']:
+        if cfg['name'] == cfgnameentry.get_text():
+            break
+        else:
+            index += 1
+
+
+    saveconfig(False, index)
+
+def saveconfig(isnewconfig, index):
     newconfig = {}
     newconfig['name'] = cfgnameentry.get_text()
 
@@ -201,6 +230,17 @@ def cfgnameokbuttonclicked(button):
 
     newconfig['extraargs'] = extraargsentry.get_text()
 
-    jsoncfg['cfgs'].append(newconfig)
-    configlist.append([newconfig['name']])
+    if isnewconfig:
+        jsoncfg['cfgs'].append(newconfig)
+        configlist.append([newconfig['name']])
+    else:
+        jsoncfg['cfgs'][index] = newconfig
+        configiter = configcombobox.get_active_iter()
+        configlist.clear()
+
+        for cfg in jsoncfg['cfgs']:
+            configlist.append([cfg['name']])
+
+        configcombobox.set_active_iter(configiter)
+    
     writechanges()
