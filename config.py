@@ -100,13 +100,17 @@ def loadconfigbuttonclicked(button):
     noautoloadcheckbox.set_active(loadcfg['args'][6])
     pistolstartcheckbox.set_active(loadcfg['args'][7])
 
+    pwadlist.clear()
     for pwad in loadcfg['pwads']:
         pwadlist.append([pwad['name'], pwad['path'], pwad['merge']])
 
+    dehlist.clear()
     for deh in loadcfg['dehs']:
         dehlist.append([deh['name'], deh['path']])
 
     extraargsentry.set_text(loadcfg['extraargs'])
+
+    cfgnameentry.set_text(loadcfg['name'])
 
 def deleteconfigbuttonclicked(button):
     index = configcombobox.get_active()
@@ -194,7 +198,7 @@ def saveconfig(isnewconfig, index):
     if othercomplevelcheckbox.get_active():
         newconfig['complevel'] = [True, othercomplevelentry.get_text()]
     else:
-        newconfig['complevel'] = [False, skillcombobox.get_active()]
+        newconfig['complevel'] = [False, complevelcombobox.get_active()]
     
     newconfig['args'] = [
         nomonsterscheckbox.get_active(),
@@ -235,12 +239,12 @@ def saveconfig(isnewconfig, index):
         configlist.append([newconfig['name']])
     else:
         jsoncfg['cfgs'][index] = newconfig
-        configiter = configcombobox.get_active_iter()
+        configindex = configcombobox.get_active()
         configlist.clear()
 
         for cfg in jsoncfg['cfgs']:
             configlist.append([cfg['name']])
 
-        configcombobox.set_active_iter(configiter)
+        configcombobox.set_active(configindex)
     
     writechanges()
