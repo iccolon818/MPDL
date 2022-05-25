@@ -1,8 +1,10 @@
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
 from builder import connect_signals
 from config import configinit
+from gi import require_version
+
+require_version('Gtk', '3.0')
+from gi.repository.Gtk import (main, main_quit)
+
 import config
 
 from objects import (complevelcombobox, configcombobox, iwadcombobox, 
@@ -19,6 +21,6 @@ portcombobox.set_active(0)
 skillcombobox.set_active(0)
 
 window.show_all()
-window.connect("delete-event", Gtk.main_quit)
+window.connect("delete-event", main_quit)
 
-Gtk.main()
+main()
