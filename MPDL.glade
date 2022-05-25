@@ -1420,9 +1420,11 @@
                         <property name="can-focus">False</property>
                         <property name="model">configlist</property>
                         <property name="has-entry">True</property>
+                        <property name="entry-text-column">0</property>
                         <child internal-child="entry">
                           <object class="GtkEntry">
                             <property name="can-focus">False</property>
+                            <property name="editable">False</property>
                           </object>
                         </child>
                       </object>

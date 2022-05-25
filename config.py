@@ -9,7 +9,7 @@ import touch
 
 from objects import *
 
-cfg = "./.mpdl.cfg"
+cfgpath = "./.mpdl.cfg"
 
 def configinit():
 
@@ -20,11 +20,11 @@ def configinit():
         "cfgs": []
     }
 
-    if not exists(cfg):
-        touch.touch(cfg)
+    if not exists(cfgpath):
+        touch.touch(cfgpath)
     else:
-        if os.path.getsize(cfg) > 0:
-            f = open(cfg, "r")
+        if os.path.getsize(cfgpath) > 0:
+            f = open(cfgpath, "r")
             jsoncfg = json.load(f)
             f.close()
 
@@ -33,9 +33,12 @@ def configinit():
 
             for iwad in jsoncfg['iwads']:
                 iwadlist.append([iwad['name'], iwad['path']])
+
+            for cfg in jsoncfg['cfgs']:
+                configlist.append([cfg['name']])
         
 def writechanges():
-    f = open(cfg, "w")
+    f = open(cfgpath, "w")
     jsonstr = json.dumps(jsoncfg, indent = 4)
     f.write(jsonstr)
     f.close()
@@ -44,7 +47,66 @@ def saveconfigbuttonclicked(button):
     cfgnamedialog.show()
 
 def loadconfigbuttonclicked(button):
-    print("dummy!")
+    index = configcombobox.get_active()
+    loadcfg = jsoncfg['cfgs'][index]
+    
+    port = loadcfg['port']
+    def searchports(list, path, iter, data):
+        if portlist.get_value(iter, 0) == port:
+            portcombobox.set_active_iter(iter)
+
+    portlist.foreach(searchports, None)
+
+    iwad = loadcfg['iwad']
+    def searchiwads(list, path, iter, data):
+        if iwadlist.get_value(iter, 0) == iwad:
+            iwadcombobox.set_active_iter(iter)
+
+    iwadlist.foreach(searchiwads, None)
+
+    if (loadcfg['demo'] == 1):
+        demoplayradiobutton.set_active(True)
+        playdemofilechooser.select_filename(loadcfg['playdemo'])
+    elif (loadcfg['demo'] == 2):
+        demorecordradiobutton.set_active(True)
+        recorddemofolderchooser.select_filename(loadcfg['demofolder'])
+        recorddemofilenameentry.set_text(loadcfg['recorddemo'])
+    else:
+        demononeradiobutton.set_active(True)
+
+    warpentry.set_text(loadcfg['warp'])
+    zdoomstylecheckbox.set_active(loadcfg['zdoomwarp'])
+
+    if loadcfg['skill'][0]:
+        otherskillcheckbox.set_active(True)
+        otherskillentry.set_text(loadcfg['skill'][1])
+    else:
+        otherskillcheckbox.set_active(False)
+        skillcombobox.set_active(loadcfg['skill'][1])
+
+    if loadcfg['complevel'][0]:
+        othercomplevelcheckbox.set_active(True)
+        othercomplevelentry.set_text(loadcfg['complevel'][1])
+    else:
+        othercomplevelcheckbox.set_active(False)
+        complevelcombobox.set_active(loadcfg['complevel'][1])
+
+    nomonsterscheckbox.set_active(loadcfg['args'][0])
+    nomusiccheckbox.set_active(loadcfg['args'][1])
+    fastmonsterscheckbox.set_active(loadcfg['args'][2])
+    respawncheckbox.set_active(loadcfg['args'][3])
+    solonetcheckbox.set_active(loadcfg['args'][4])
+    dehlumpcheckbox.set_active(loadcfg['args'][5])
+    noautoloadcheckbox.set_active(loadcfg['args'][6])
+    pistolstartcheckbox.set_active(loadcfg['args'][7])
+
+    for pwad in loadcfg['pwads']:
+        pwadlist.append([pwad['name'], pwad['path'], pwad['merge']])
+
+    for deh in loadcfg['dehs']:
+        dehlist.append([deh['name'], deh['path']])
+
+    extraargsentry.set_text(loadcfg['extraargs'])
 
 def deleteconfigbuttonclicked(button):
     print("dummy!")
@@ -130,4 +192,5 @@ def cfgnameokbuttonclicked(button):
     newconfig['extraargs'] = extraargsentry.get_text()
 
     jsoncfg['cfgs'].append(newconfig)
+    configlist.append([newconfig['name']])
     writechanges()
