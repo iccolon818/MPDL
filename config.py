@@ -41,8 +41,22 @@ def writechanges():
     f.write(jsonstr)
     f.close()
 
+# Saved configurations
+
+cfgnamedialog = builder.get_object("cfgnamedialog")
+cfgnameentry = builder.get_object("cfgnameentry")
+configcombobox = builder.get_object("configcombobox")
+configlist = builder.get_object("configlist")
+
+portcombobox = builder.get_object("portcombobox")
+portlist = builder.get_object("portlist")
+iwadcombobox = builder.get_object("iwadcombobox")
+iwadlist = builder.get_object("iwadlist")
+
+
+
 def saveconfigbuttonclicked(button):
-    print("dummy!")
+    cfgnamedialog.show()
 
 def loadconfigbuttonclicked(button):
     print("dummy!")
@@ -51,7 +65,7 @@ def deleteconfigbuttonclicked(button):
     print("dummy!")
 
 def cfgnamecancelbuttonclicked(button):
-    print("dummy!")
+    cfgnamedialog.hide()
 
 def cfgnameokbuttonclicked(button):
-    print("dummy!")
+    cfgnamedialog.hide()
