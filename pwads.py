@@ -3,10 +3,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 import builder
 
-pwadchooser = builder.get_object("pwadchooser")
-pwadpathentry = builder.get_object("pwadpathentry")
-pwadlist = builder.get_object("pwadlist")
-pwadlisttreeview = builder.get_object("pwadlisttreeview")
+from objects import (pwadchooser, pwadlist, pwadlisttreeview, pwadpathentry)
 
 def clearpwadsbuttonclicked(button):
     pwadlist.clear()

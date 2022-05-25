@@ -6,40 +6,15 @@ import os.path
 from os.path import exists
 import subprocess
 
-portcombobox = builder.get_object("portcombobox")
-portlist = builder.get_object("portlist")
-iwadcombobox = builder.get_object("iwadcombobox")
-iwadlist = builder.get_object("iwadlist")
-
-warpentry = builder.get_object("warpentry")
-zdoomstylecheckbox = builder.get_object("zdoomstylecheckbox")
-skillcombobox = builder.get_object("skillcombobox")
-otherskillentry = builder.get_object("skillentry")
-otherskillcheckbox = builder.get_object("otherskillcheckbox")
-complevelcombobox = builder.get_object("complevelcombobox")
-othercomplevelcheckbox = builder.get_object("othercomplevelcheckbox")
-othercomplevelentry = builder.get_object("othercomplevelentry")
-complevellist = builder.get_object("complevellist")
-
-nomonsterscheckbox = builder.get_object("nomonsterscheckbox")
-nomusiccheckbox = builder.get_object("nomusiccheckbox")
-fastmonsterscheckbox = builder.get_object("fastmonsterscheckbox")
-respawncheckbox = builder.get_object("respawncheckbox")
-solonetcheckbox = builder.get_object("solonetcheckbox")
-dehlumpcheckbox = builder.get_object("dehlumpcheckbox")
-noautoloadcheckbox = builder.get_object("noautoloadcheckbox")
-pistolstartcheckbox = builder.get_object("pistolstartcheckbox")
-
-pwadlist = builder.get_object("pwadlist")
-dehlist = builder.get_object("dehlist")
-
-extraargsentry = builder.get_object("extraargsentry")
-
-demoplayradiobutton = builder.get_object("demoplayradiobutton")
-playdemofilechooser = builder.get_object("playdemofilechooser")
-demorecordradiobutton = builder.get_object("demorecordradiobutton")
-recorddemofolderchooser = builder.get_object("recorddemofolderchooser")
-recorddemofilenameentry = builder.get_object("recorddemofilenameentry")
+from objects import (complevelcombobox, complevellist, dehlist, 
+    dehlumpcheckbox, demoplayradiobutton, demorecordradiobutton,
+    extraargsentry, fastmonsterscheckbox, iwadcombobox, iwadlist,
+    noautoloadcheckbox, nomonsterscheckbox, nomusiccheckbox,
+    othercomplevelcheckbox, othercomplevelentry, otherskillcheckbox,
+    otherskillentry, pistolstartcheckbox, playdemofilechooser,
+    portcombobox, portlist, pwadlist, recorddemofilenameentry, 
+    recorddemofolderchooser,respawncheckbox, skillcombobox,
+    solonetcheckbox, warpentry, zdoomstylecheckbox)
 
 def launchgame(button):
     command = []

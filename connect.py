@@ -51,6 +51,8 @@ handlers = {
     "on_deleteconfigbutton_clicked": config.deleteconfigbuttonclicked,
     "on_cfgnamecancelbutton_clicked": config.cfgnamecancelbuttonclicked,
     "on_cfgnameokbutton_clicked": config.cfgnameokbuttonclicked,
+    "on_overwritenobutton_clicked": config.overwritenobuttonclicked,
+    "on_overwriteyesbutton_clicked": config.overwriteyesbuttonclicked,
 
     # Misc button handlers
     "on_otherskillcheckbox_toggled": toggles.otherskilltoggled,
