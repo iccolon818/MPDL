@@ -109,7 +109,17 @@ def loadconfigbuttonclicked(button):
     extraargsentry.set_text(loadcfg['extraargs'])
 
 def deleteconfigbuttonclicked(button):
-    print("dummy!")
+    index = configcombobox.get_active()
+    cfgiter = configcombobox.get_active_iter()
+    configlist.remove(cfgiter)
+
+    if index:
+        configcombobox.set_active(index-1)
+    else:
+        configcombobox.set_active(0)
+
+    del jsoncfg['cfgs'][index]
+    writechanges()
 
 def cfgnamecancelbuttonclicked(button):
     cfgnamedialog.hide()
