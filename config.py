@@ -1,15 +1,12 @@
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
 import builder
 import json
 import os.path
-from os.path import exists
+from os.path import exists, expanduser
 import touch
 
 from objects import *
 
-cfgpath = "./.mpdl.cfg"
+cfgpath = expanduser('~') + "/.mpdl.config"
 
 def configinit():
 

@@ -1,6 +1,3 @@
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
 from builder import get_object
 
 # Toplevels
@@ -38,7 +35,7 @@ extraargsentry = get_object("extraargsentry")
 fastmonsterscheckbox = get_object("fastmonsterscheckbox")
 iwadcombobox = get_object("iwadcombobox")
 iwadnameentry = get_object("iwadnameentry")
-iwadpathentry = get_object("iwadnameentry")
+iwadpathentry = get_object("iwadpathentry")
 noautoloadcheckbox = get_object("noautoloadcheckbox")
 nomonsterscheckbox = get_object("nomonsterscheckbox")
 nomusiccheckbox = get_object("nomusiccheckbox")

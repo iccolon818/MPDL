@@ -1,9 +1,12 @@
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi import require_version
+require_version('Gtk', '3.0')
+from gi.repository.Gtk import Builder
+import os
+import sys
 
-builder = Gtk.Builder()
-builder.add_from_file("MPDL.glade")
+builder = Builder()
+dir = os.path.dirname(sys.argv[0])
+builder.add_from_file(dir + "/MPDL.glade")
 
 def get_object(obj):
     return builder.get_object(obj)

@@ -1,6 +1,3 @@
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
 import builder
 import config
 
@@ -49,9 +46,7 @@ def portnameokbuttonclicked(button):
         "path": portchooser.get_filename()
     }
 
-    print("Before: ", config.jsoncfg)
     config.jsoncfg['ports'].append(newport)
-    print("After: ", config.jsoncfg)
     portlist.append([newport['name'], newport['path']])
     config.writechanges()
 
@@ -74,7 +69,8 @@ def removeiwadbuttonclicked(button):
     config.writechanges()
 
 def iwadchooserselectionchanged(chooser):
-    iwadpathentry.set_text(chooser.get_filename())
+    if chooser.get_filename():
+        iwadpathentry.set_text(chooser.get_filename())
 
 def iwadcancelbuttonclicked(button):
     iwadpathentry.set_text("")
@@ -96,9 +92,7 @@ def iwadnameokbuttonclicked(button):
         "path": iwadchooser.get_filename()
     }
 
-    print("Before: ", config.jsoncfg)
     config.jsoncfg['iwads'].append(newiwad)
-    print("After: ", config.jsoncfg)
 
     iwadlist.append([newiwad['name'], newiwad['path']])
     config.writechanges()
